@@ -37,7 +37,7 @@ const getStatusFromRepo = async (req: Request, res: Response): Promise<void> => 
 
     const status = await getStatus({ headers, url: latestDeploymentStatusURL });
 
-    console.log(status);
+    res.setHeader("Content-Type", "image/svg+xml");
 
     switch (status) {
       case "pending": {
