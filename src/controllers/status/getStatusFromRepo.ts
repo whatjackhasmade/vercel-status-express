@@ -7,7 +7,7 @@ import type { Request, Response } from "express";
 // Common
 import { logger } from "vercel-status";
 
-declare type DeployStatus = "inactive" | "pending" | "success";
+declare type DeployStatus = "error" | "failure" | "inactive" | "in_progress" | "pending" | "queued" | "success";
 
 const getStatus = async ({ headers, url }): Promise<DeployStatus> => {
   const res = await fetch(url, { headers });
@@ -52,17 +52,17 @@ const getStatusFromRepo = async (req: Request, res: Response): Promise<void> => 
     const status: DeployStatus = await getStatus({ headers, url });
 
     switch (status) {
-      case "inactive": {
-        res.sendFile(path.join(__dirname + "../../../views/success.html"));
+      case "error" || "failure": {
+        res.sendFile(path.join(__dirname + "../../../views/failure.html"));
         break;
       }
 
-      case "pending": {
+      case "in_progress" || "pending" || "queued": {
         res.sendFile(path.join(__dirname + "../../../views/pending.html"));
         break;
       }
 
-      case "success": {
+      case "inactive" || "success": {
         res.sendFile(path.join(__dirname + "../../../views/success.html"));
         break;
       }
