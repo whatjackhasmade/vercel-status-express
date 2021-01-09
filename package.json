@@ -20,7 +20,8 @@
 		"lint": "tslint -c tslint.json -p tsconfig.json --fix",
 		"lint-fix": "npm run pretest -- --fix",
 		"postinstall": "npm run build",
-    "postbuild": "cpy '**/*' '!**/*.ts' ../dist/ --cwd=src/ --no-overwrite --parents",		"prebuild": "del ./dist",
+		"postbuild": "cpy '**/*' '!**/*.ts' ../dist/ --cwd=src/ --no-overwrite --parents",
+		"prebuild": "del ./dist",
 		"precommit": "run-s format type-check",
 		"start": "node dist/main.js",
 		"upgrade": "npm-check --update"
@@ -38,6 +39,7 @@
 		"express-async-errors": "^3.1.1",
 		"express-bearer-token": "^2.4.0",
 		"helmet": "^4.3.1",
+		"node-cache": "^5.1.2",
 		"node-fetch": "^2.6.1",
 		"npm-run-all": "^4.1.5",
 		"url": "^0.11.0",
