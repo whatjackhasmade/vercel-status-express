@@ -30,6 +30,10 @@ const getStatusFromRepo = async (req: Request, res: Response): Promise<void> => 
   // Build the repository deployments URL from the parameters in the URL
   const repoDeployments = `https://api.github.com/repos/${username}/${repo}/deployments`;
 
+  // If you don't have a token set, you might want to
+  if (!GITHUB_TOKEN)
+    console.warn("You can increase your request rate by adding a GITHUB_TOKEN to your enviromental variables");
+
   try {
     // Tell the browser we are returning an SVG file
     res.setHeader("Content-Type", "image/svg+xml");
