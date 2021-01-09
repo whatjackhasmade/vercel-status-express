@@ -11,7 +11,7 @@
 		"url": "https://github.com/whatjackhasmade/vercel-status-express"
 	},
 	"scripts": {
-		"build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./dist",
+		"build": "npm run prebuild && tsc && tscpaths -p tsconfig.json -s ./src -o ./dist && npm run postbuild",
 		"build-run": "run-s build start",
 		"d": "npm run develop",
 		"dev": "npm run develop",
@@ -20,6 +20,7 @@
 		"lint": "tslint -c tslint.json -p tsconfig.json --fix",
 		"lint-fix": "npm run pretest -- --fix",
 		"postinstall": "npm run build",
+    "postbuild": "cpy '**/*' '!**/*.ts' ../dist/ --cwd=src/ --no-overwrite --parents",		"prebuild": "del ./dist",
 		"precommit": "run-s format type-check",
 		"start": "node dist/main.js",
 		"upgrade": "npm-check --update"
@@ -49,6 +50,8 @@
 		"@types/request": "^2.48.5",
 		"@typescript-eslint/eslint-plugin": "^4.11.1",
 		"@typescript-eslint/parser": "^4.11.1",
+		"cpy-cli": "^3.1.1",
+		"del-cli": "^3.0.1",
 		"eslint": "^7.17.0",
 		"nodemon": "^2.0.6",
 		"npm-check": "^5.9.0",
