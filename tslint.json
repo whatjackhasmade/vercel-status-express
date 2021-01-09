@@ -1,0 +1,14 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "linterOptions": {
+    "exclude": ["node_modules/**"]
+  },
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
+    "no-console": false,
+    "no-var-requires": false,
+    "trailing-comma": [false]
+  }
+}

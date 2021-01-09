@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es6",
+    "noImplicitAny": false,
+    "lib": ["es2018", "dom", "esnext"],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "vercel-status": ["src"]
+    },
+    "typeRoots": ["node_modules/@types", "./types"]
+  },
+  "exclude": ["node_modules", ".vscode", "types", "**/*.test.js", "**/*.test.ts", "generated"],
+  "include": ["./index.d.ts", "src/**/*"]
+}
