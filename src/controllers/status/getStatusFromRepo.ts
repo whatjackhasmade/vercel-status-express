@@ -52,17 +52,37 @@ const getStatusFromRepo = async (req: Request, res: Response): Promise<void> => 
     const status: DeployStatus = await getStatus({ headers, url });
 
     switch (status) {
-      case "error" || "failure": {
+      case "error": {
         res.sendFile(path.join(__dirname + "../../../views/failure.html"));
         break;
       }
 
-      case "in_progress" || "pending" || "queued": {
+      case "error": {
+        res.sendFile(path.join(__dirname + "../../../views/failure.html"));
+        break;
+      }
+
+      case "in_progress": {
         res.sendFile(path.join(__dirname + "../../../views/pending.html"));
         break;
       }
 
-      case "inactive" || "success": {
+      case "pending": {
+        res.sendFile(path.join(__dirname + "../../../views/pending.html"));
+        break;
+      }
+
+      case "queued": {
+        res.sendFile(path.join(__dirname + "../../../views/pending.html"));
+        break;
+      }
+
+      case "inactive": {
+        res.sendFile(path.join(__dirname + "../../../views/success.html"));
+        break;
+      }
+
+      case "success": {
         res.sendFile(path.join(__dirname + "../../../views/success.html"));
         break;
       }
