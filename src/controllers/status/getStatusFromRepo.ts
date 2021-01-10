@@ -64,6 +64,8 @@ const getStatusFromRepo = async (req: Request, res: Response): Promise<void> => 
 
     const value = { status };
 
+    console.log({ status });
+
     switch (status) {
       case "error": {
         if (!cachedStatus) cache.set(key, value, SECONDS_CACHED);
