@@ -73,6 +73,12 @@ const getStatusFromRepo = async (req: Request, res: Response): Promise<void> => 
         break;
       }
 
+      case "failure": {
+        if (!cachedStatus) cache.set(key, value, SECONDS_CACHED);
+        res.sendFile(path.join(__dirname + "../../../views/failure.html"));
+        break;
+      }
+
       case "in_progress": {
         if (!cachedStatus) cache.set(key, value, SECONDS_CACHED);
         res.sendFile(path.join(__dirname + "../../../views/pending.html"));
