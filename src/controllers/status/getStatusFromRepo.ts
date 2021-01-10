@@ -100,6 +100,12 @@ const getStatusFromRepo = async (req: Request, res: Response): Promise<void> => 
         res.sendFile(path.join(__dirname + "../../../views/success.html"));
         break;
       }
+
+      default: {
+        if (!cachedStatus) cache.set(key, value, SECONDS_CACHED);
+        res.sendFile(path.join(__dirname + "../../../views/success.html"));
+        break;
+      }
     }
   } catch (error) {
     logger.error(error.message);
